@@ -2,7 +2,7 @@
 resource "aws_security_group" "iti_securityGR" {
   name        = "iti_securityGR"
   description = "security group for bastion server"
-  vpc_id      = aws_vpc.vpc.id
+  vpc_id      = module.network.vpc_id
   tags = {
     Name = "iti_securityGR"
   }
@@ -23,7 +23,7 @@ resource "aws_security_group_rule" "SG_inbound_allow_ssh" {
 resource "aws_security_group" "iti_securityGR2" {
   name        = "iti_securityGR2"
   description = "security group for port 3000 "
-  vpc_id      = aws_vpc.vpc.id
+  vpc_id      = module.network.vpc_id
   tags = {
     Name = "iti_securityGR_3000"
   }

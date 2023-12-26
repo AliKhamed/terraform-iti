@@ -2,7 +2,7 @@ resource "aws_instance" "bastion" {
   ami                         = var.ami
   instance_type               = var.instance_type
   key_name                    = aws_key_pair.mykeypair.key_name
-  subnet_id                   = aws_subnet.iti_public_subnet1.id
+  subnet_id                   = module.network.public_subnet1_id
   vpc_security_group_ids      = [aws_security_group.iti_securityGR.id]
   associate_public_ip_address = true
 
@@ -19,7 +19,7 @@ resource "aws_instance" "application_instance" {
   ami                         = var.ami
   instance_type               = var.instance_type
   key_name                    = aws_key_pair.mykeypair.key_name
-  subnet_id                   = aws_subnet.iti_private_subnet1.id
+  subnet_id                   = module.network.private_subnet1_id
   vpc_security_group_ids      = [aws_security_group.iti_securityGR2.id]
   associate_public_ip_address = true
 
